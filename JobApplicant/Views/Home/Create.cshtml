@@ -1,0 +1,35 @@
+﻿@model Applicant
+@{
+    ViewData["Title"] = "Tambah Pendaftar";
+}
+
+<div class="row">
+    <div class="col mx-auto rounded border p-5">
+        <h2>@ViewData["Title"]</h2>
+
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="InputName" class="form-label">Nama</label>
+                <input asp-for="Name" type="text" class="form-control" id="InputName" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="InputEmail" class="form-label">Email</label>
+                <input asp-for="Email" type="email" class="form-control" id="InputEmail" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="InputPhone" class="form-label">No. HP</label>
+                <input asp-for="Phone" type="text" class="form-control" id="InputPhone" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="ResumeFileInput" class="form-label">Resume</label>
+                <input asp-for="ResumeFile" class="form-control" type="file" id="ResumeFileInput" accept=".pdf">
+                <span asp-validation-for="ResumeFile" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
+            <a class="btn btn-outline-warning" asp-controller="Home" asp-action="Index">Cancel</a>
+        </form>
+    </div>
+</div>

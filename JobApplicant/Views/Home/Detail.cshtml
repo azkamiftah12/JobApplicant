@@ -1,0 +1,44 @@
+﻿@model Applicant
+@{
+    ViewData["Title"] = "Detail Pendaftar";
+}
+
+<div class="row">
+    <div class="col mx-auto rounded border p-5">
+        <h2>@ViewData["Title"]</h2>
+
+        
+        <div class="mb-3">
+            <label for="InputName" class="form-label">ID Pendaftar</label>
+            <p class="form-control"> @Model.Id</p>
+        </div>
+
+        <div class="mb-3">
+            <label for="InputName" class="form-label">Nama</label>
+            <p class="form-control"> @Model.Name</p>
+        </div>
+        <div class="mb-3">
+            <label for="InputEmail" class="form-label">Email</label>
+            <p class="form-control"> @Model.Email</p>
+        </div>
+        <div class="mb-3">
+            <label for="InputPhone" class="form-label">No. HP</label>
+            <p class="form-control"> @Model.Phone</p>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.ResumeFileName))
+        {
+            <div class="row justify-content-center my-10">
+                <div class="fw-bold fs-1 text-center mb-2">File Resume</div>
+                <embed src="@Url.Content("~/resumeFile/" + Model.ResumeFileName)" width="800" height="600" type="application/pdf">
+            </div>
+        }
+        else
+        {
+            <span class="text-danger">No resume available for this applicant.</span>
+        }
+        <div class="mt-5 d-flex justify-content-center">
+                <a class="btn btn-outline-warning" asp-controller="Home" asp-action="Index">Back</a>
+        </div>
+    </div>
+</div>

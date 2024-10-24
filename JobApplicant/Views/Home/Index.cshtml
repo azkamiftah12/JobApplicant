@@ -1,0 +1,49 @@
+﻿@model List<Applicant>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2 class="text-center my-5">List Pendaftar</h2>
+
+
+<div class="d-flex justify-content-center mb-5">
+    <a class="btn btn-outline-primary" asp-controller="Home" asp-action="Create">Tambah Pendaftar</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID Pendaftar</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Resume</th>
+            <th>Tanggal Daftar</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var applicant in Model)
+        {
+            <tr>
+                <td>@applicant.Id</td>
+                <td>@applicant.Name</td>
+                <td>@applicant.Email</td>
+                <td>@applicant.Phone</td>
+                <td class="@(applicant.ResumeFileName == null ? "text-danger" : "text-success fw-bold")">@(string.IsNullOrEmpty(applicant.ResumeFileName) ? "Resume tidak tersedia" : "Resume Tersedia")</td>
+                <td>@applicant.CreatedAt</td>
+                <td style="white-space:nowrap">
+                    <a class="btn btn-outline-success btn-sm" asp-controller="Home" asp-action="Detail" asp-route-id="@applicant.Id">Detail</a>
+                    <a class="btn btn-outline-warning btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@applicant.Id">Edit</a>
+                    <a class="btn btn-outline-danger btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@applicant.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model == null || !Model.Any())
+{
+    <div class="text-center text-danger">Belum Ada Pendaftar.</div>
+}
+
